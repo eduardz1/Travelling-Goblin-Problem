@@ -275,8 +275,8 @@ def ga(
     mutation: Callable[[list[int]], None] = inversion_mutation,
 ):
     nnz_nodes = nodes[nodes != 0]
-    p_size = int(len(nnz_nodes) * population_size_percent)
-    gens = int(len(nnz_nodes) * generations_percent)
+    p_size = max(2, int(len(nnz_nodes) * population_size_percent))
+    gens = max(1, int(len(nnz_nodes) * generations_percent))
     tau = max(2, int(tournament_size_percent * p_size))
     elite_size = int(elitism_rate * p_size)
     num_offspring = p_size - elite_size
